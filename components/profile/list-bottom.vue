@@ -98,4 +98,7 @@
     left: 0;
     width: 100%;
 }
+.align-end{
+  align-items: flex-end !important;
+}
 </style>

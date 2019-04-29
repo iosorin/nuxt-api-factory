@@ -1,3 +1,5 @@
+const REPOS = require('./repositories.json')
+
 const pkg = require('./package')
 const nodeExternals = require('webpack-node-externals')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
@@ -17,7 +19,17 @@ module.exports = {
     { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
     ]
   },
-  
+
+
+  generate: {
+    routes: function () {
+      let routes = REPOS.map(repo=>{
+        return '/dashboard/' + repo.component;
+      })
+      return routes;
+    }
+  },
+
   loading: { color: '#3B8070' },
 
   plugins: [
