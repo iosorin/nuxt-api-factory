@@ -1,0 +1,63 @@
+@require '~vuetify/src/stylus/settings/_colors'
+
+$theme := {
+  primary:     $grey.lighten-3
+  accent:      $indigo.accent-3
+  secondary:   $grey.lighten-1
+  info:        $blue.lighten-1
+  warning:     $amber.darken-2
+  error:       $red.accent-4
+  success:     $green.lighten-2
+}
+
+@require '~vuetify/src/stylus/app'
+
+.pointer
+  cursor pointer
+
+.relative
+  position relative
+.page
+  @extend .fade-transition
+
+body, html
+	height 100vh
+	overflow hidden
+
+.auth-btn
+  width 200px
+
+
+.v-snack__content
+  justify-content center !important
+  p
+    margin 0 !important
+    
+a
+  text-decoration none !important
+  border none !important    
+
+.b20
+  bottom 20px !important  
+  
+.h100
+  height 100%  
+
+.start
+  align-items flex-start !important  
+
+.coverDiv
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%  
+
+.v-snack__content
+  max-width 300px   !important
+  
+@media only screen and (max-width : 1600px)
+  .v-navigation-drawer > .v-list:not(.v-list--dense) .v-list__tile
+    font-size 13px !important
+  body, html
+    overflow-y visible
