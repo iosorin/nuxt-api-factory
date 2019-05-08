@@ -11,24 +11,24 @@
             div
               h3.headline.mb-0.text-uppercase {{api.title}}
               div {{api.description}}
-    </template>
+</template>
 
 
-    <script>
-     export default {
-     	props: ['apidata'],
-     	data () {
-     		return {
-     			api: this.apidata
-     		}
-     	},
-     	computed: {
-     		clearUrl () {
-     			return this.api.title.toLowerCase().replace(/ /g, '-')
-     		}
-     	}
-}
-  </script>
+<script>
+ export default {
+ 	props: ['apidata'],
+ 	data () {
+ 		return {
+ 			api: this.apidata
+ 		}
+ 	},
+ 	computed: {
+ 		clearUrl () {
+ 			return this.api.title.toLowerCase().replace(/ /g, '-')
+ 		}
+ 	}
+ }
+</script>
 
 <style lang="stylus" scoped>
   .v-card

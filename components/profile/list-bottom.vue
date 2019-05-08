@@ -17,7 +17,7 @@
                         v-flex(xs12, md6)
                             v-list-tile(@click="resetActiveStatus")
                                 v-list-tile-title.body-2.text-uppercase.text-xs-center deselect                    
-                            v-dialog(v-model='dialog', max-width='320', v-if="activeProfile")
+                            v-dialog(v-model='dialog', max-width='320', v-if="activeProfile", content-class="dialog-y")
                                 v-card
                                     v-card-title.text-uppercase
                                         h4 Active Profile
@@ -28,25 +28,25 @@
                                     v-list(dense)
                                         v-list-tile
                                             v-list-tile-content First Name:
-                                            v-list-tile-content.align-end {{activeProfile.firstName}}
+                                            v-list-tile-content.al-end {{activeProfile.firstName}}
                                         v-list-tile
                                             v-list-tile-content Last Name:
-                                            v-list-tile-content.align-end {{activeProfile.lastName}}
+                                            v-list-tile-content.al-end {{activeProfile.lastName}}
                                         v-list-tile
                                             v-list-tile-content Favorite animal:
-                                            v-list-tile-content.align-end {{activeProfile.animal || '--'}}
+                                            v-list-tile-content.al-end {{activeProfile.animal || '--'}}
                                         v-list-tile
                                             v-list-tile-content Gender:
-                                            v-list-tile-content.align-end {{activeProfile.gender || '--'}}
+                                            v-list-tile-content.al-end {{activeProfile.gender || '--'}}
                                         v-list-tile
                                             v-list-tile-content City:
-                                            v-list-tile-content.align-end {{activeProfile.city || '--'}}    
+                                            v-list-tile-content.al-end {{activeProfile.city || '--'}}    
                                         v-list-tile(v-if="!activeProfile.bio")
                                             v-list-tile-content Bio:
-                                            v-list-tile-content.align-end --
+                                            v-list-tile-content.al-end --
                                         v-list-tile.relative(v-else, @click="bio = !bio")
                                             v-list-tile-content Bio
-                                            v-list-tile-content.align-end
+                                            v-list-tile-content.al-end
                                                     v-icon(v-if="!bio") arrow_drop_down
                                                     v-icon(v-else) arrow_drop_up
                                             v-slide-y-transition
@@ -85,20 +85,16 @@
     }
 </script>
 
-<style scoped>
-.v-list__tile__content{
-    font-size: 14px !important;
-}
-.v-list__tile__content.align-end{
-    font-size: 12px !important;
-}
-.bio-card{
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 100%;
-}
-.align-end{
-  align-items: flex-end !important;
-}
+<style scoped lang="stylus">
+.v-list__tile__content
+    font-size 14px !important
+    &.al-end
+        font-size 12px !important
+        
+.bio-card
+    position absolute
+    top 50px
+    left 0
+    width 100%
+    
 </style>

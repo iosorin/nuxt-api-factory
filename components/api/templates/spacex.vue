@@ -14,31 +14,31 @@
                             v-list(dense).text-capitalize
                                 v-list-tile
                                     v-list-tile-content first flight:
-                                    v-list-tile-content.align-end {{ props.item.first_flight }}
+                                    v-list-tile-content.al-end {{ props.item.first_flight }}
                                 v-list-tile
                                     v-list-tile-content success rate:
-                                    v-list-tile-content.align-end {{ props.item.success_rate_pct }}
+                                    v-list-tile-content.al-end {{ props.item.success_rate_pct }}
                                 v-list-tile
                                     v-list-tile-content status:
-                                    v-list-tile-content.align-end.text-lowercase {{ props.item.active ? 'active' : 'not active'}}
+                                    v-list-tile-content.al-end.text-lowercase {{ props.item.active ? 'active' : 'not active'}}
                                 v-list-tile
                                     v-list-tile-content height(m):
-                                    v-list-tile-content.align-end {{ props.item.height.meters }}
+                                    v-list-tile-content.al-end {{ props.item.height.meters }}
                                 v-list-tile
                                     v-list-tile-content mass:
-                                    v-list-tile-content.align-end {{ props.item.mass.kg }}
+                                    v-list-tile-content.al-end {{ props.item.mass.kg }}
                                 v-list-tile
                                     v-list-tile-content diameter:
-                                    v-list-tile-content.align-end {{ props.item.diameter.meters }}
+                                    v-list-tile-content.al-end {{ props.item.diameter.meters }}
                                 v-list-tile
                                     v-list-tile-content engines:
-                                    v-list-tile-content.align-end {{ props.item.engines.number }}
+                                    v-list-tile-content.al-end {{ props.item.engines.number }}
                                 v-list-tile
                                     v-list-tile-content stages:
-                                    v-list-tile-content.align-end {{ props.item.stages }}
+                                    v-list-tile-content.al-end {{ props.item.stages }}
                                 v-list-tile
                                     v-list-tile-content landing legs:
-                                    v-list-tile-content.align-end {{ props.item.landing_legs.number }} 
+                                    v-list-tile-content.al-end {{ props.item.landing_legs.number }} 
                         v-card-actions.d-flex.pa-0
                             v-list.text-uppercase.pa-0(dense)
                                 v-hover
@@ -58,9 +58,3 @@
   	props: ['data']
 }
 </script>
-
-<style>
-    .fz:before{
-        display: none;
-    }
-</style>

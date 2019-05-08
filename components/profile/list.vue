@@ -71,7 +71,6 @@
 </script>
 
 <style lang="stylus"  scoped>
-.active-tile
 .xs2 .ma-0 
 	*
 		margin 0 !important
@@ -95,13 +94,12 @@
 .v-dialog  .v-list__tile__content
 	font-size 14px !important		
 
-
-.fade-enter-active, .fade-leave-active {
-	transition: opacity .5s;
-}
-
-.fade-enter, .fade-leave-to {
-	opacity: 0;
-}
+.fade
+	&-enter,
+	&-leave-to
+		opacity 0
+	&-enter-active,
+	&-leave-active 
+		transition opacity .5s	
 
 </style>
