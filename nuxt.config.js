@@ -1,4 +1,4 @@
-const REPOS = require('./repositories.json')
+const REPOS = require('./static/data/repositories.json')
 
 const pkg = require('./package')
 const nodeExternals = require('webpack-node-externals')

@@ -64,23 +64,19 @@
 </script>
 
 
-<style scoped>
+<style scoped lang="stylus">
+.shuffle-move
+	transition: transform 1s
 
-.shuffle-move {
-	transition: transform 1s;
-}
+.fade
+	&-enter,
+	&-leave-to
+		opacity: 0
+	&-enter-active,
+	&-leave-active
+		transition: opacity .5s
 
-.fade-enter-active, .fade-leave-active {
-	transition: opacity .5s;
-}
-
-.fade-enter, .fade-leave-to {
-	opacity: 0;
-}
-  @media only screen and (max-width : 1600px){
-	.display-2{
-		font-size: 35px !important;
-	}
-  }
-
+@media only screen and (max-width : 1600px)
+	.display-2
+		font-size: 34px !important;
 </style>

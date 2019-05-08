@@ -58,10 +58,10 @@
 	}
 </script>
 
-<style scoped>
-	.v-btn--active:before,
-	.v-btn:hover:before,
-	.v-btn:focus:before{
-		background-color: #fff !important
-	}
+<style scoped lang="stylus">
+	.v-btn
+		&--active:before,
+		&:hover:before,
+		&:focus:before
+			background-color: #fff !important
 </style>
