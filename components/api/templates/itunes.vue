@@ -81,7 +81,7 @@
 </script>
 
 
-<style lang="scoped" lang="stylus">
+<style scoped lang="stylus">
 .md4 .v-card,
 .iterator > .v-card,
 .iterator .layout.row.wrap{
