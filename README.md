@@ -1,6 +1,7 @@
-# Nuxt Factory app with Firebase usage example (authentification, profile editing)
+# Nuxt app with Firebase usage example
 
-> Nuxt.js + Vuetify.js project
+> Front  - API Factory
+> Server - Authentification, Profile editing
 
 ## Build Setup
 
