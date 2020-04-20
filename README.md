@@ -1,4 +1,4 @@
-# my-project
+# Nuxt Factory app with Firebase usage example (authentification, profile editing)
 
 > Nuxt.js + Vuetify.js project
 
