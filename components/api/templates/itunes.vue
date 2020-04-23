@@ -36,10 +36,10 @@
 								)
 								v-card-title.pb-0
 									.subheading {{props.item.artistName}}
-									.title.mt-2 {{ props.item.collectionCensoredName }} 
+									.title.mt-2 {{ props.item.collectionCensoredName }}
 									div.title-bottom
 										.body-1 TRACK COUNT: {{props.item.trackCount}}
-										.body-1(v-if="props.item.releaseDate") {{ getDate(props.item.releaseDate) }} 
+										.body-1(v-if="props.item.releaseDate") {{ getDate(props.item.releaseDate) }}
 
 
 
@@ -47,37 +47,43 @@
 </template>
 
 <script>
-	export default {
-		props: ['data'],
-		data () {
-			return {
-				searchWord: 'daft',
-				rowsPerPageItems: [],
-				pagination: {
-					rowsPerPage: 3
-				}
-			}
-		},
-		methods: {
-			submit () {
-				this.$store.dispatch('getAlbum', this.searchWord)
-			},
-			replaceThumb (url) {
-				return url.replace('100x100bb', '600x600bb')
-			},
-			getDate (d) {
-			   return d.split('T0')[0]
-			}
-		},
-		computed: {
-			dataExist () {
-				return this.albums && this.albums.length > 0
-			},
-			albums () {
-				return this.$store.getters.APIData
+export default {
+	props: ['data'],
+
+	data () {
+		return {
+			searchWord: 'daft',
+			rowsPerPageItems: [],
+			pagination: {
+				rowsPerPage: 3
 			}
 		}
+	},
+
+	methods: {
+		submit () {
+			this.$store.dispatch('getAlbum', this.searchWord)
+		},
+
+		replaceThumb (url) {
+			return url.replace('100x100bb', '600x600bb')
+		},
+
+		getDate (d) {
+			return d.split('T0')[0]
+		}
+	},
+
+	computed: {
+		dataExist () {
+			return this.albums && this.albums.length > 0
+		},
+
+		albums () {
+			return this.$store.getters.APIData
+		}
 	}
+}
 </script>
 
 

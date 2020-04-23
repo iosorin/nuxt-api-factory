@@ -18,12 +18,13 @@
 
 <script>
 export default {
-	props: ['data'],
-	computed: {
-		images () {
-			return this.data.slice(0, 12)
-		}
-	}
+    props: ['data'],
+
+    computed: {
+        images () {
+            return this.data.slice(0, 12)
+        }
+    }
 }
 </script>
 
@@ -31,5 +32,5 @@ export default {
 <style lang="stylus" scoped>
   .v-card
     border-radius: 10px
-  
+
 </style>

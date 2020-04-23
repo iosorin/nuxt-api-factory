@@ -7,7 +7,7 @@
               v-card(
               hover
               slot-scope="{ hover }"
-              :class="`elevation-${hover ? 12 : 2}`"              
+              :class="`elevation-${hover ? 12 : 2}`"
               :color="hover ? 'white' : 'grey lighten-3'"
               @click="openModal(card)"
               )
@@ -20,7 +20,7 @@
                   div
                     h3.body-2.mb-0.text-capitalize {{card.name}}
                     div  {{card.genres[0].name}}
-                    
+
       v-dialog(v-model='modal.state', max-width='25vw')
         v-card(color="black")
           v-carousel(
@@ -43,38 +43,42 @@
 
 
 <script>
-  export default {
-  	props: ['data'],
-  	data () {
-  		return {
-  			modal: {
-  				state: false,
-  				title: '',
-  				description: '',
-  				link: '',
-  				screenshots: [],
-  				videos: []
-  			}
-  		}
-  	},
-  	methods: {
-  		openModal (card) {
-  			this.modal.title = card.name
-  			this.modal.description = card.summary
-  			this.modal.link = card.url
-  			this.modal.screenshots = card.screenshots.slice(0, 3)
-  			this.modal.state = true
-  		},
-  		replaceThumb (url) {
-  			return url.replace('t_thumb', 't_screenshot_med')
-  		}
-  	},
-  	computed: {
-  		cards () {
-  			return this.data.slice(0, 8)
-  		}
-  	}
-  }
+export default {
+    props: ['data'],
+
+    data () {
+        return {
+            modal: {
+                state: false,
+                title: '',
+                description: '',
+                link: '',
+                screenshots: [],
+                videos: []
+            }
+        }
+    },
+
+    methods: {
+        openModal (card) {
+            this.modal.title = card.name
+            this.modal.description = card.summary
+            this.modal.link = card.url
+            this.modal.screenshots = card.screenshots.slice(0, 3)
+            this.modal.state = true
+        },
+
+        replaceThumb (url) {
+            return url.replace('t_thumb', 't_screenshot_med')
+        }
+    },
+
+    computed: {
+        cards () {
+            return this.data.slice(0, 8)
+        }
+    }
+}
 </script>
 
 <style lang="stylus" scoped>

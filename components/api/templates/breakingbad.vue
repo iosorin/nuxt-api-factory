@@ -11,13 +11,13 @@
       )
       v-carousel-item(v-for='(item,i) in data', :key='i')
         blockquote.blockquote
-          h4.display-1.font-weight-thin {{item.quote}} 
-          h5.blockquote_author.display-4.font-weight-black {{item.author}} 
+          h4.display-1.font-weight-thin {{item.quote}}
+          h5.blockquote_author.display-4.font-weight-black {{item.author}}
 </template>
 
 <script>
- export default {
- 	props: ['data']
+export default {
+    props: ['data']
 }
 </script>
 
@@ -40,5 +40,5 @@
       left 0
       bottom 20px
       color #e7b312 !important
-      
+
 </style>

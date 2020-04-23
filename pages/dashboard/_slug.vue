@@ -12,50 +12,53 @@
 </template>
 
 <script>
-	const getInstance = slug => ({
-		component: import(`~/components/api/templates/${slug}`)
-	})
+const getInstance = (slug) => ({
+	component: import(`~/components/api/templates/${slug}`)
+});
 
-	export default {
-		data () {
-			return {
-				TITLE: '',
-				DATA: [],
-				loaded: false
-			}
+export default {
+	data () {
+		return {
+			TITLE: '',
+			DATA: [],
+			loaded: false
+		}
+	},
+
+	beforeCreate () {
+		this.component = () => getInstance(this.$route.params.slug)
+	},
+
+	created () {
+		this.initAPI(this.$route.params.slug)
+	},
+
+	computed: {
+		API () {
+			return this.$store.getters.API
 		},
-		beforeCreate () {
-			this.component = () => getInstance(this.$route.params.slug)
+
+		APIData () {
+			return this.$store.getters.APIData
 		},
-		created () {
-			this.initAPI(this.$route.params.slug)
-		},
-		computed: {
-			API () {
-				return this.$store.getters.API
-			},
-			APIData () {
-				return this.$store.getters.APIData
-			},
-			APITitle () {
-				return this.API.info.title
-			}
-		},
-		mounted () {
-	
-		},
-		methods: {
-			initAPI (slug) {
-				this.$store.dispatch('setApiPerPage', slug)
-					.then(() => {
-						this.loaded = true
-						this.TITLE = this.APITitle
-						this.DATA = this.APIData
-					})
-					.catch(er => console.log(er))
-			}
+
+		APITitle () {
+			return this.API.info.title
+		}
+	},
+
+	methods: {
+		initAPI (slug) {
+			this.$store.dispatch('setApiPerPage', slug)
+				.then(() => {
+					this.loaded = true
+					this.TITLE = this.APITitle
+					this.DATA = this.APIData
+				})
+				.catch(er => console.log(er))
 		}
 	}
+}
 </script>
 
 <style scoped lang="stylus">

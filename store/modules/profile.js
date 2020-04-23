@@ -20,42 +20,54 @@ export default {
 	state: {
 		profiles: []
 	},
+
 	mutations: {
 		newProfile (state, payload) {
 			state.profiles.push(payload)
 		},
+
 		loadProfiles (state, payload) {
 			state.profiles = payload
 		},
+
 		editProfile (state, payload) {
 			const profile = state.profiles.find(p => p.id === payload.id)
+
 			Object.keys(profile).forEach((key) => {
 				profile[key] = payload[key]
 			})
 		},
+
 		setActiveStatus (state, id) {
 			const profile = state.profiles.find(p => p.id === id)
+
 			profile.active = true
 
 			state.profiles
 				.filter(p => p.id !== id)
 				.forEach(p => { p.active = false })
 		},
+
 		resetActiveStatus (state) {
 			state.profiles.forEach(p => { p.active = false })
 		}
 	},
+
 	actions: {
 		async loadProfiles ({ commit }) {
 			commit('clearError')
 			commit('setLoading', true)
+
 			try {
 				const profile = await _db.once('value')
 				const profiles = profile.val()
+
 				if (profiles) {
 					const profilesArray = []
+
 					Object.keys(profiles).forEach(key => {
 						const t = profiles[key]
+
 						profilesArray.push(
 							new Profile(
 								t.firstName,
@@ -70,20 +82,27 @@ export default {
 							)
 						)
 					})
+
 					commit('loadProfiles', profilesArray)
-				} else {
+				}
+				else {
 					commit('loadProfiles', [])
 				}
+
 				commit('setLoading', false)
-			} catch (error) {
+			}
+			catch (error) {
 				commit('setLoading', false)
 				commit('setError', error.message)
+
 				throw error
 			}
 		},
+
 		async newProfile ({ commit, getters }, payload) {
 			commit('clearError')
 			commit('setLocalLoad', true)
+
 			try {
 				const newProfile = new Profile(
 					payload.firstName,
@@ -95,52 +114,70 @@ export default {
 					getters.user.id
 				)
 				const profile = await _db.push(newProfile)
+
 				commit('newProfile', {
 					...newProfile,
 					id: profile.key,
 					active: false
 				})
+
 				setTimeout(() => commit('setLocalLoad', false), 1300)
-			} catch (error) {
+			}
+			catch (error) {
 				commit('setLocalLoad', false)
 				commit('setError', error.message)
+
 				throw error
 			}
 		},
 		async removeProfiles ({ commit, getters }, payload) {
 			commit('clearError')
+
 			try {
 				const active = getters.activeProfile
+
 				if (typeof payload === 'string') {
 					await _db.child(payload).remove()
+
 					if (active && active.id === payload) commit('resetActiveStatus')
-				} else {
+				}
+				else {
 					await payload.forEach(blob => {
 						_db.child(blob.id).remove()
 					})
+
 					if (active && payload.some(p => p.id === active.id)) commit('resetActiveStatus')
 				}
-			} catch (error) {
+			}
+			catch (error) {
 				commit('setError', error.message)
+
 				throw error
 			}
 		},
+
 		async editProfile ({ commit, getters }, payload) {
 			commit('clearError')
 			commit('setLocalLoad', true)
+
 			try {
 				await _db.child(payload.id).update(payload)
+
 				commit('editProfile', payload)
 				commit('setLocalLoad', false)
-			} catch (error) {
+			}
+			catch (error) {
 				commit('setLocalLoad', false)
 				commit('setError', error.message)
+
 				throw error
 			}
 		},
+
 		async setActiveStatus ({ commit }, id) {
 			commit('clearError')
 			commit('setLocalLoad', true)
+
 			try {
 				await _db.once('value', (snapshot) => {
 					snapshot.forEach((child) => {
@@ -151,17 +188,23 @@ export default {
 				}).then(() => {
 					_db.child(id).update({ active: true })
 				})
+
 				commit('setActiveStatus', id)
+
 				setTimeout(() => commit('setLocalLoad', false), 750)
-			} catch (error) {
+			}
+			catch (error) {
 				setTimeout(() => commit('setLocalLoad', false), 750)
+
 				commit('setError', error.message)
+
 				throw error
 			}
 		},
 		async resetActiveStatus ({ commit }) {
 			commit('clearError')
 			commit('setLocalLoad', true)
+
 			try {
 				await _db.once('value', (snapshot) => {
 					snapshot.forEach((child) => {
@@ -170,11 +213,14 @@ export default {
 						})
 					})
 				})
+
 				commit('resetActiveStatus')
 				commit('setLocalLoad', false)
-			} catch (error) {
+			}
+			catch (error) {
 				commit('setLocalLoad', false)
 				commit('setError', error.message)
+
 				throw error
 			}
 		}

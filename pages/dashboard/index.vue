@@ -12,55 +12,66 @@
 
 
 <script>
-	import APILINK from '~/components/api/link'
+import APILINK from '~/components/api/link'
 
-	export default {
-		components: {
-			APILINK
-		},
-		data () {
-			return {
-				LIST: [],
-				itemsToShow: 3
-			}
-		},
-		created () {
-			this.$nuxt.$on('updateDashboard', () => {
-				this.randomList()
-			})
-			this.$store.dispatch('getApiList')
-				.then(() => {
-					this.sliceFirst()
-					// this.randomList()
-				})
-				.catch((e) => {
-					console.log(e)
-				})
-		},
-		computed: {
-			APIList () {
-				return this.$store.getters.APIList
-			}
-		},
-		methods: {
-			randomList () {
-				if (!this.APIList) return
-				let ar = this.APIList
-				const shuffled = ar.sort(() => 0.5 - Math.random())
-				const selected = shuffled.slice(0, this.itemsToShow)
-				this.LIST = selected
-			},
-			sliceFirst () {
-				this.LIST = this.APIList.slice(0, this.itemsToShow)
-			},
-			toggleLIST () {
-				this.LIST.length > 3 ? this.sliceFirst() : this.LIST = this.APIList
-			}
-		},
-		destroyed () {
-			this.$nuxt.$off('updateDashboard')
+export default {
+	components: {
+		APILINK
+	},
+
+	data () {
+		return {
+			LIST: [],
+			itemsToShow: 3
 		}
+	},
+
+	created () {
+		this.$nuxt.$on('updateDashboard', () => {
+			this.randomList()
+		})
+
+		this.$store.dispatch('getApiList')
+			.then(() => {
+				this.sliceFirst()
+				// this.randomList()
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+	},
+
+	computed: {
+		APIList () {
+			return this.$store.getters.APIList
+		}
+	},
+
+	methods: {
+		randomList () {
+			if (!this.APIList) return
+
+			let ar = this.APIList
+
+			const shuffled = ar.sort(() => 0.5 - Math.random())
+			const selected = shuffled.slice(0, this.itemsToShow)
+
+			this.LIST = selected
+		},
+
+		sliceFirst () {
+			this.LIST = this.APIList.slice(0, this.itemsToShow)
+		},
+
+		toggleLIST () {
+			this.LIST.length > 3 ? this.sliceFirst() : this.LIST = this.APIList
+		}
+	},
+
+	destroyed () {
+		this.$nuxt.$off('updateDashboard')
 	}
+}
 </script>
 
 
