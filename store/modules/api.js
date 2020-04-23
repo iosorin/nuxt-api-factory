@@ -14,36 +14,46 @@ export default {
 		API: null,
 		APILIST: null
 	},
+
 	mutations: {
 		setApiPerPage (state, payload) {
 			state.API = payload
 		},
+
 		setAPIList (state, payload) {
 			state.APILIST = payload
 		},
+
 		updateData (state, payload) {
 			state.API.data = payload
 		}
 	},
+
 	actions: {
 		async getApiList ({ commit }) {
 			commit('clearError')
 			commit('setLoading', true)
+
 			try {
 				const data = await REPOLIST.get().then((res) => res.data)
+
 				commit('setAPIList', data)
 				commit('setLoading', false)
-			} catch (error) {
+			}
+			catch (error) {
 				commit('setLoading', false)
 				commit('setError', error.message)
+
 				throw error
 			}
 		},
+
 		async setApiPerPage ({ commit }, slug) {
 			commit('clearError')
 			commit('setLoading', true)
+
 			try {
-				let info
+				let info;
 
 				const data = await REPOLIST.getAPI(slug)
 					.then(res => {
@@ -54,26 +64,34 @@ export default {
 
 				commit('setApiPerPage', new API(info, data))
 				commit('setLoading', false)
-			} catch (error) {
+			}
+			catch (error) {
 				commit('setLoading', false)
 				commit('setError', error.message)
+
 				throw error
 			}
 		},
+
 		async getAlbum ({ commit }, album) {
 			commit('clearError')
 			commit('setLoading', true)
+
 			try {
 				const data = await ITUNES.getAlbum(album)
+
 				commit('updateData', data)
 				commit('setLoading', false)
-			} catch (error) {
+			}
+			catch (error) {
 				commit('setLoading', false)
 				commit('setError', error.message)
+
 				throw error
 			}
 		}
 	},
+
 	getters: {
 		API: (state) => state.API,
 		APIData: (state) => state.API ? state.API.data : [],

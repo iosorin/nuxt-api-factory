@@ -53,7 +53,7 @@
             class="black--text",
             :timeout="timeout"
             )
-            p.green--text(v-if="submitStatus==='OK'")  Profile was successfully 
+            p.green--text(v-if="submitStatus==='OK'")  Profile was successfully
                 span(v-if="!editMode") added
                 span(v-else) updated
             p.red--text(v-if="submitStatus==='ERROR'")  Please fill the form correctly.
@@ -61,109 +61,116 @@
 </template>
 
 <script>
-    export default {
-    	props: ['editedProfile'],
-    	data () {
-    		return {
-    			formTitle: 'New Profile',
-    			firstName: '',
-    			lastName: '',
-    			gender: '',
-    			city: '',
-    			animal: '',
-    			bio: '',
-    			animals: ['Dog', 'Cat', 'Rabbit', 'Turtle', 'Snake'],
-    			nameRules: [v => !!v || 'required'],
-    			submitStatus: null,
-    			timeout: 1300,
-    			snackbar: false
-    		}
-    	},
-    	watch: {
-    		editedProfile (obj) {
-    			if (obj.length === 0) {
-    				this.formTitle = 'New Profile'
-    				this.resetForm()
-    			}
-    			Object.keys(obj).forEach((key) => {
-    				this.formTitle = 'Edit Profile'
-    				if (obj[key] !== null) {
-    					this[key] = obj[key]
-    				}
-    			})
-    		}
-    	},
-    	computed: {
-    		editMode () {
-    			return this.editedProfile.length !== 0
-    		}
-    	},
-    	methods: {
-    		onSubmit () {
-    			!this.editMode ? this.addNewProfile() : this.updateProfile()
-    		},
+export default {
+	props: ['editedProfile'],
 
-    		updateProfile () {
-    			if (!this.$refs.form.validate()) {
-    				this.submitStatus = 'ERROR'
-    				this.snackbar = true
-    			} else {
-    				const obj = this.editedProfile
-    				Object.keys(obj).forEach((key) => {
-    					if (obj[key] !== null) {
-    						obj[key] = this[key]
-    					}
-    				})
-    
-    				this.$store.dispatch('editProfile', obj)
+	data() {
+		return {
+			formTitle: 'New Profile',
+			firstName: '',
+			lastName: '',
+			gender: '',
+			city: '',
+			animal: '',
+			bio: '',
+			animals: ['Dog', 'Cat', 'Rabbit', 'Turtle', 'Snake'],
+			nameRules: [v => !!v || 'required'],
+			submitStatus: null,
+			timeout: 1300,
+			snackbar: false
+		}
+	},
 
-    					.then(() => {
-    						this.submitStatus = 'OK'
-    						this.snackbar = true
-    					})
-    					.catch(err => {
-    						this.submitStatus = err.message
-    					})
-    			}
-    		},
-    		addNewProfile () {
-    			if (!this.$refs.form.validate()) {
-    				this.submitStatus = 'ERROR'
-    				this.snackbar = true
-    			} else {
-    				const profile = {
-    					firstName: this.firstName,
-    					lastName: this.lastName,
-    					animal: this.animal,
-    					city: this.city,
-    					gender: this.gender,
-    					bio: this.bio
-    				}
-    				this.$store.dispatch('newProfile', profile)
-    					.then(() => {
-    						this.submitStatus = 'OK'
-    						this.snackbar = true
-    					})
-    					.catch(err => {
-    						this.submitStatus = err.message
-    					})
-    				this.resetForm()
-    			}
-    		},
-    		resetForm () {
-    			this.$refs.form.reset()
-    			this.firstName = ''
-    			this.lastName = ''
-    			this.animal = ''
-    			this.city = ''
-    			this.gender = ''
-    			this.bio = ''
-    		}
+	watch: {
+		editedProfile(obj) {
+			if (obj.length === 0) {
+				this.formTitle = 'New Profile'
+				this.resetForm()
+			}
+
+			Object.keys(obj).forEach((key) => {
+				this.formTitle = 'Edit Profile'
+
+				if (obj[key] !== null) {
+					this[key] = obj[key]
+				}
+			})
+		}
+	},
+
+	computed: {
+		editMode() {
+			return this.editedProfile.length !== 0
+		}
+	},
+
+	methods: {
+		onSubmit() {
+			!this.editMode ? this.addNewProfile() : this.updateProfile()
+		},
+
+		updateProfile() {
+			if (!this.$refs.form.validate()) {
+				this.submitStatus = 'ERROR'
+				this.snackbar = true
+			}
+			else {
+				const obj = this.editedProfile
+
+				Object.keys(obj).forEach((key) => {
+					if (obj[key] !== null) {
+						obj[key] = this[key]
+					}
+				})
+
+				this.$store.dispatch('editProfile', obj)
+					.then(() => {
+						this.submitStatus = 'OK'
+						this.snackbar = true
+					})
+					.catch(err => {
+						this.submitStatus = err.message
+					})
+			}
+		},
+		addNewProfile () {
+			if (!this.$refs.form.validate()) {
+				this.submitStatus = 'ERROR'
+				this.snackbar = true
+			}
+			else {
+				const profile = {
+					firstName: this.firstName,
+					lastName: this.lastName,
+					animal: this.animal,
+					city: this.city,
+					gender: this.gender,
+					bio: this.bio
+				}
+
+				this.$store.dispatch('newProfile', profile)
+					.then(() => {
+						this.submitStatus = 'OK'
+						this.snackbar = true
+					})
+					.catch(err => {
+						this.submitStatus = err.message
+					})
+				this.resetForm()
+			}
+		},
+		resetForm () {
+			this.$refs.form.reset()
+			this.firstName = ''
+			this.lastName = ''
+			this.animal = ''
+			this.city = ''
+			this.gender = ''
+			this.bio = ''
+		}
 	}
-
 }
 </script>
-
 
 <style lang="stylus" scoped>
 .error-input

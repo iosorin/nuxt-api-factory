@@ -15,19 +15,21 @@
 
 
 <script>
- export default {
- 	props: ['apidata'],
- 	data () {
- 		return {
- 			api: this.apidata
- 		}
- 	},
- 	computed: {
- 		clearUrl () {
- 			return this.api.title.toLowerCase().replace(/ /g, '-')
- 		}
- 	}
- }
+export default {
+    props: ['apidata'],
+
+    data () {
+        return {
+            api: this.apidata
+        }
+    },
+
+    computed: {
+        clearUrl () {
+            return this.api.title.toLowerCase().replace(/ /g, '-')
+        }
+    }
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -39,7 +41,7 @@
     border none !important
     &__title
       background #424242 !important
-   
+
 
   @media only screen and (max-width : 1600px)
     .v-card

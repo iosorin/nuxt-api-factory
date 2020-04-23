@@ -14,10 +14,11 @@
 
 <script>
 export default {
-	props: ['error'],
-	created () {
-	 	this.$store.dispatch('setLoading', null)
-	}
+    props: ['error'],
+
+    created () {
+        this.$store.dispatch('setLoading', null)
+    }
 }
 </script>
 

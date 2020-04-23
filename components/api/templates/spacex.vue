@@ -38,7 +38,7 @@
                                     v-list-tile-content.al-end {{ props.item.stages }}
                                 v-list-tile
                                     v-list-tile-content landing legs:
-                                    v-list-tile-content.al-end {{ props.item.landing_legs.number }} 
+                                    v-list-tile-content.al-end {{ props.item.landing_legs.number }}
                         v-card-actions.d-flex.pa-0
                             v-list.text-uppercase.pa-0(dense)
                                 v-hover
@@ -50,11 +50,11 @@
                                     )
                                         v-list-tile-content.font-weight-black.px-1 WIikipedia
 
-</template> 
+</template>
 
 
 <script>
-  export default {
-  	props: ['data']
+export default {
+    props: ['data']
 }
 </script>
