@@ -6,8 +6,6 @@ Api factory (Itunes search, Spacex rocket list, Dog pictures etc.) with user aut
 
 ![](header.png)
 
-![](header2.png)
-
 ## Build Setup
 
 ``` bash
