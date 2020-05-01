@@ -1,9 +1,9 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const baseDomain = './'
+const baseDomain = './';
 
-const baseURL = `${baseDomain}`
+const baseURL = `${baseDomain}`;
 
 export default axios.create({
-	baseURL
-})
+    baseURL
+});

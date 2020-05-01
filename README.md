@@ -1,7 +1,5 @@
 # API Factory with Firebase && Nuxt.js
 
-> Api factory with user authentification.
-
 Api factory: Itunes search, Spacex rocket list, Dog pictures etc.
 
 ![](header.png)
