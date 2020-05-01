@@ -1,8 +1,8 @@
 # API Factory with Firebase && Nuxt.js
 
-> Nuxt, Firebase, Vuelidate, Vuetify, User authentification
+> Api factory with user authentification.
 
-Api factory (Itunes search, Spacex rocket list, Dog pictures etc.) with user authentification.
+Api factory: Itunes search, Spacex rocket list, Dog pictures etc.
 
 ![](header.png)
 
