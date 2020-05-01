@@ -1,6 +1,12 @@
-# API Factory with Firebase usage example
+# API Factory with Firebase && Nuxt.js
 
-> Nuxt.js + Vuetify
+> Nuxt, Firebase, Vuelidate, Vuetify, User authentification
+
+Api factory (Itunes search, Spacex rocket list, Dog pictures etc.) with user authentification.
+
+![](header.png)
+
+![](header2.png)
 
 ## Build Setup
 
